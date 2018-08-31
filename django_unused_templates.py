@@ -21,7 +21,7 @@ def get_templates():
 	#Templates will only be returned if they are located in a /templates/ directory
 	template_list = []
 	for html_file in get_html_files():
-		if string.rfind(html_file, "templates/") != 0:
+		if html_file.find("templates/") != 0:
 			try:
 				template_list.append(html_file.rsplit("templates/")[1])
 			except IndexError: #The html file is not in a template directory... don't count it as a template
@@ -39,11 +39,11 @@ def get_unused_templates():
 
 	for count, template in enumerate(templates):
 		for line in fileinput.input(files): #Loops through every line of every file
-			if string.find(line, template) > 0:
+			if line.find(template) > 0:
 				tl_count[count] = 1
 
 		if tl_count[count] == 0:
-			print html_files[count]
+			print(html_files[count])
 
 if __name__ == "__main__":
 	get_unused_templates()
