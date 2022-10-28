@@ -58,7 +58,7 @@ def get_unused_templates(skip, fast, filename):
         if fast:
             lines = files_content
         else:
-            lines = fileinput.input(files)
+            lines = fileinput.input(files, openhook=fileinput.hook_encoded("utf-8"))
 
         for line in lines:
             if line.find(template) > 0:
